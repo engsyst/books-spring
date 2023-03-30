@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head data-th-replace="~{/fragments/headers:head(title='Orders')}">
+    <title>Заказы</title>
+</head>
+<body>
+<!--<%@ include file="../jspf/menu.jspf" %>-->
+<div data-th-replace="~{/fragments/menu::menu('admin')}"></div>
+
+<!-- CONTENT -->
+<div class="section main-content" >
+    <div class="container">
+
+        <div class="row">
+            <!--<h3 data-th-text="Замовлення ${empty search ? '' : 'по запросу '.concat(odp.search).concat('\') }">Orders</h3>-->
+            <h3 data-th-text="Замовлення за запитом ${search}">Orders</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tabs">
+                    <ul class="nav nav-tabs">
+                        <li data-th-class="${search.equals('newed')} ? 'active'"><a href="/order/orders.html?search=newed">Нові</a></li>
+                        <li data-th-class="${search.equals('inprogress')} ? 'active'"><a href="/order/orders.html?search=inprogress">В обробці</a></li>
+                        <li data-th-class="${search.equals('completed')} ? 'active'"><a href="/order/orders.html?search=completed">Виконані</a></li>
+                        <li data-th-class="${search.equals('rejected')} ? 'active'"><a href="/order/orders.html?search=rejected">Скасовані</a></li>
+                        <li data-th-class="${search} ?:'active'"><a href="${context }/order/orders.html">Усі</a></li>
+                    </ul>
+                    <div class="tab-content">
+                                <div data-th-if="${orders }" class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <h1>No such orders</h1>
+                                    </div>
+                                </div>
+                                <div data-th-unless="${orders }" data-th-replace="order_table"></div>
+                                <div data-th-unless="${orders }" data-th-replace="order_table"></div>
+                            </c:when>
+                            <c:otherwise>
+                                <html:include page="../jspf/orders_tab.html" />
+                                <c:set value="${odp }" var="paging" scope="request" />
+                                <html:include page="../jspf/pagination.html" />
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%@ include file="../jspf/bootstrap.jspf" %>
+<script src="${context }/js/confirm.js"></script>
+</body>
+</html>

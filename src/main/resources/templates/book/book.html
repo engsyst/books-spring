@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head data-th-replace="~{fragments/headers :: head(title='Book')}">
+    <title>Book</title>
+</head>
+<body>
+<div data-th-replace="~{/fragments/menu::menu('client')}"></div>
+
+<!-- CONTENT -->
+<div class="section main-content">
+    <div class="container">
+        <div class="row">
+            <h2 data-th-text="${book.title}">Book title</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <img alt="" src="">
+            </div>
+            <div class="col-md-9">
+                <ul>
+                    <li data-th-each="a : ${book.author}">
+                        <span data-th-text="${a.name}">author name</span><br></li>
+                    <li data-th-text="${book.isbn}">isbn</li>
+                    <li data-th-text="${book.price}">price</li>
+                    <li data-th-text="${book.count}">count</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <img alt="" src="">
+            </div>
+            <div class="col-md-9">
+                <form action="/addtocart" method="post">
+                    <input type="hidden" name="id" value="${book.id}"/>
+                    <input type="number" min="1" max="${book.count}" name="count" value="1"/>
+                    <button type="submit" name="tocart" id="${book.id}" title="Додати в кошик"
+                            class="btn btn-success" value="${book.id}">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<data-th-block data-th-replace="~{/fragments/bootstrap :: bootstrap}"></data-th-block>
+
+</body>
+</html>

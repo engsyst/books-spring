@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<body>
+
+<!-- 
+!!! IMPORTANT !!!
+Required attribute named "paging" in scope 
+ -->
+<div class="row" data-th-fragment="pagination(paging)">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <!-- -- Debug output -- // TODO change names
+        <div>BookPageSortFilter(filter=null, sortField=title, sortOrder=ASC, pageNumber=1, pageItemsCount=5, totalPages=2)</div>
+        -->
+
+        <div data-th-text="'Debug:' + ${paging}">BookPageSortFilter(filter=null, sortField=title, sortOrder=ASC, pageNumber=1, pageItemsCount=5, totalPages=2)</div>
+        <ul class="pagination">
+            <!-- backward -->
+            <li data-th-class="${paging.pageNumber == 0}? 'disabled' : _">
+                <a data-th-if="${paging.pageNumber == 0}" href="javascript:void(0);">
+                    <i class="glyphicon glyphicon-backward"></i>
+                </a>
+                <a data-th-unless="${paging.pageNumber == 0}"
+                   data-th-href="@{''(pageNumber=${paging.pageNumber - 1},sortField=${paging.sortField},sortOrder=${paging.sortOrder})}">
+                    <i class="glyphicon glyphicon-backward"></i>
+                </a>
+            </li>
+            <li data-th-class="${paging.pageNumber == 0}? 'disabled' : _">
+                <a data-th-if="${paging.pageNumber == 0}" href="javascript:void(0);">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </a>
+                <a data-th-unless="${paging.pageNumber == 0}"
+                   data-th-href="@{''(pageNumber=${paging.pageNumber - 1},sortField=${paging.sortField},sortOrder=${paging.sortOrder})}">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </a>
+            </li>
+            <!-- buttons -->
+            <li data-th-each="page : ${#numbers.sequence(0, paging.totalPages - 1)}"
+                data-th-class="${paging.pageNumber == page} ? 'active' : _">
+                <a data-th-if="${paging.pageNumber == page}"
+                   href="javascript:void(0);">
+                    <span data-th-text="${page + 1}">#</span>
+                </a>
+                <a data-th-unless="${paging.pageNumber == page}"
+                   data-th-href="@{''(pageNumber=${page},sortField=${paging.sortField},sortOrder=${paging.sortOrder})}">
+                    <span data-th-text="${page + 1}">#</span>
+                </a>
+            </li>
+            <!-- forward -->
+            <li data-th-class="${paging.pageNumber == paging.totalPages - 1}? 'disabled' : _">
+                <a data-th-if="${paging.pageNumber == paging.totalPages - 1}" href="javascript:void(0);">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+                <a data-th-unless="${paging.pageNumber == paging.totalPages - 1}"
+                   data-th-href="@{(pageNumber=${paging.pageNumber + 1},sortField=${paging.sortField},sortOrder=${paging.sortOrder})}">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                </a>
+            </li>
+            <li data-th-class="${paging.pageNumber == paging.totalPages - 1}? 'disabled' : _">
+                <a data-th-if="${paging.pageNumber == paging.totalPages - 1}" href="javascript:void(0);">
+                    <i class="glyphicon glyphicon-forward"></i>
+                </a>
+                <a data-th-unless="${paging.pageNumber == paging.totalPages - 1}"
+                   data-th-href="@{''(pageNumber=${paging.totalPages - 1},sortField=${paging.sortField},sortOrder=${paging.sortOrder})}">
+                    <i class="glyphicon glyphicon-forward"></i>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>
