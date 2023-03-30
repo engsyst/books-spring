@@ -1,8 +1,5 @@
 package ua.nure.demo.books.service;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Parameter;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -14,12 +11,8 @@ import ua.nure.demo.books.entity.Book;
 import ua.nure.demo.books.repository.AuthorRepository;
 import ua.nure.demo.books.repository.BookRepository;
 
-import java.util.List;
-
 @Service
 public class BookService {
-    @PersistenceContext
-    private EntityManager entityManager;
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     @Value("${app.web.books.default_sort_field}")
@@ -45,6 +38,6 @@ public class BookService {
     }
 
     public Book getBookById(Long id) {
-        return bookRepository.getReferenceById(id);
+        return bookRepository.getBookById(id);
     }
 }

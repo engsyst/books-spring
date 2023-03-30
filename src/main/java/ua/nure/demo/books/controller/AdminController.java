@@ -33,10 +33,10 @@ public class AdminController {
 
     @GetMapping(path = "/orders")
     public String findAllOrders(Model model, @RequestParam int page, @RequestParam int count, @RequestParam String sort) {
-        List<Order> orders = orderRepository.findAll();
-        log.debug("Orders: {}", orders);
-        model.addAttribute("orders", orders);
-        model.addAttribute("search", "");
+//        List<Order> orders = orderRepository.findAll();
+//        log.debug("Orders: {}", orders);
+//        model.addAttribute("orders", orders);
+//        model.addAttribute("search", "");
         return "admin/testorders";
     }
 
