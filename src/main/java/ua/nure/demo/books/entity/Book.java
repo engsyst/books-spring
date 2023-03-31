@@ -50,8 +50,9 @@ public class Book implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "author_has_book")
+//    @ManyToMany
+//    @JoinTable(name = "author_has_book")
+    @Column(name = "author")
     private Set<Author> author;
 
     @Override

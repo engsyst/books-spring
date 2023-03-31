@@ -15,7 +15,7 @@ USE `books` ;
 -- DROP TABLE IF EXISTS `author` ;
 CREATE TABLE IF NOT EXISTS `author` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `author_title_idx` (`title` ASC))
 ENGINE = InnoDB

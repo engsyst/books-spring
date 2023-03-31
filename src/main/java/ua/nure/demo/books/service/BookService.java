@@ -41,7 +41,9 @@ public class BookService {
 
         PageRequest pageRequest = PageRequest.of(paging.getPageNumber(), paging.getPageItemsCount(),
                 Sort.by(Sort.Direction.fromString(paging.getSortOrder()), paging.getSortField()));
-        return bookRepository.findAll(pageRequest);
+        Page<Book> books = bookRepository.findAll(pageRequest);
+        books.forEach(book -> book.setAuthor(authorRepository.findByBookId(book.getId())));
+        return books;
     }
 
     public Book getBookById(Long id) {

@@ -9,12 +9,8 @@ import ua.nure.demo.books.entity.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
     @Override
-    @Query(value = "SELECT DISTINCT b.id, b.category_id, b.count, b.cover, b.description, " +
-            "    b.isbn, b.price, b.title, a.id author_id, concat_authors(b.id) name " +
-            "FROM bookshop.book b " +
-            "JOIN author_has_book ab ON b.id = ab.book_id " +
-            "JOIN author a ON a.id = ab.author_id " +
-            "GROUP BY b.id HAVING COUNT(*) > 0",
+    @Query(value = "SELECT b.id, b.category_id, b.count, b.cover, b.description, " +
+            "b.isbn, b.price, b.title, b.author FROM book b",
             countQuery = "SELECT COUNT(*) FROM book",
             nativeQuery = true)
     Page<Book> findAll(Pageable p);
