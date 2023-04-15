@@ -105,7 +105,7 @@ if (typeof jQuery === 'undefined') {
 
     if (!selector) {
       selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // trim for ie7
     }
 
     var $parent = $(selector)
@@ -499,7 +499,7 @@ if (typeof jQuery === 'undefined') {
   var clickHandler = function (e) {
     var href
     var $this   = $(this)
-    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // strip for ie7
+    var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) // trim for ie7
     if (!$target.hasClass('carousel')) return
     var options = $.extend({}, $target.data(), $this.data())
     var slideIndex = $this.attr('data-slide-to')
@@ -686,7 +686,7 @@ if (typeof jQuery === 'undefined') {
   function getTargetFromTrigger($trigger) {
     var href
     var target = $trigger.attr('data-target')
-      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // trim for ie7
 
     return $(target)
   }
@@ -851,7 +851,7 @@ if (typeof jQuery === 'undefined') {
 
     if (!selector) {
       selector = $this.attr('href')
-      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // trim for ie7
     }
 
     var $parent = selector && $(selector)
@@ -1167,7 +1167,7 @@ if (typeof jQuery === 'undefined') {
   $(document).on('click.bs.modal.data-api', '[data-toggle="modal"]', function (e) {
     var $this   = $(this)
     var href    = $this.attr('href')
-    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // strip for ie7
+    var $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))) // trim for ie7
     var option  = $target.data('bs.modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data())
 
     if ($this.is('a')) e.preventDefault()
@@ -1988,7 +1988,7 @@ if (typeof jQuery === 'undefined') {
 
     if (!selector) {
       selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // trim for ie7
     }
 
     if ($this.parent('li').hasClass('active')) return

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
-<form data-th-fragment="addToCart(id)" id="confirm" method="post" action="addtocart">
-    <button type="submit" name="tocart" data-th-id="${id }" title="Добавить в корзину"
-            class="btn btn-success" data-th-value="${id }">
-        <i class="glyphicon glyphicon-shopping-cart"></i>
-    </button>
+<form data-th-fragment="addToCart(id,url)" id="confirm"
+      method="post" data-th-action="@{${url}}">
+  <input type="hidden" name="id" data-th-value="${id}">
+  <input type="hidden" name="count" value="1">
+  <button data-th-fragment="submitButton" type="submit" name="tocart"
+          title="Добавить в корзину" class="btn btn-success">
+    <i class="glyphicon glyphicon-shopping-cart"></i>
+  </button>
 </form>
 </body>
 </html>

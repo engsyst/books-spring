@@ -2123,7 +2123,7 @@ th {
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;
 }
-.table-striped > tbody > tr:nth-child(odd) {
+.table-trimed > tbody > tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 .table-hover > tbody > tr:hover {
@@ -4785,7 +4785,7 @@ a.thumbnail.active {
 .alert-danger .alert-link {
   color: #843534;
 }
-@-webkit-keyframes progress-bar-stripes {
+@-webkit-keyframes progress-bar-trimes {
   from {
     background-position: 40px 0;
   }
@@ -4793,7 +4793,7 @@ a.thumbnail.active {
     background-position: 0 0;
   }
 }
-@-o-keyframes progress-bar-stripes {
+@-o-keyframes progress-bar-trimes {
   from {
     background-position: 40px 0;
   }
@@ -4801,7 +4801,7 @@ a.thumbnail.active {
     background-position: 0 0;
   }
 }
-@keyframes progress-bar-stripes {
+@keyframes progress-bar-trimes {
   from {
     background-position: 40px 0;
   }
@@ -4833,8 +4833,8 @@ a.thumbnail.active {
        -o-transition: width .6s ease;
           transition: width .6s ease;
 }
-.progress-striped .progress-bar,
-.progress-bar-striped {
+.progress-trimed .progress-bar,
+.progress-bar-trimed {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
@@ -4843,14 +4843,14 @@ a.thumbnail.active {
 }
 .progress.active .progress-bar,
 .progress-bar.active {
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
-       -o-animation: progress-bar-stripes 2s linear infinite;
-          animation: progress-bar-stripes 2s linear infinite;
+  -webkit-animation: progress-bar-trimes 2s linear infinite;
+       -o-animation: progress-bar-trimes 2s linear infinite;
+          animation: progress-bar-trimes 2s linear infinite;
 }
 .progress-bar-success {
   background-color: #5cb85c;
 }
-.progress-striped .progress-bar-success {
+.progress-trimed .progress-bar-success {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
@@ -4858,7 +4858,7 @@ a.thumbnail.active {
 .progress-bar-info {
   background-color: #5bc0de;
 }
-.progress-striped .progress-bar-info {
+.progress-trimed .progress-bar-info {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
@@ -4866,7 +4866,7 @@ a.thumbnail.active {
 .progress-bar-warning {
   background-color: #f0ad4e;
 }
-.progress-striped .progress-bar-warning {
+.progress-trimed .progress-bar-warning {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
@@ -4874,7 +4874,7 @@ a.thumbnail.active {
 .progress-bar-danger {
   background-color: #d9534f;
 }
-.progress-striped .progress-bar-danger {
+.progress-trimed .progress-bar-danger {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
   background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);

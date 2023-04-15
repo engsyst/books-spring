@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="row" data-th-fragment="books(role, books, paging)">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+    <table class="table table-bordered table-trimed">
+      <colgroup class="col-position"></colgroup>
+      <colgroup class="col-title"></colgroup>
+      <colgroup class="col-title"></colgroup>
+      <colgroup class="col-price"></colgroup>
+      <colgroup class="col-count"></colgroup>
+      <colgroup class="col-action"></colgroup>
+      <thead class="text-center">
+      <tr class="text-center">
+        <th class="text-center">#</th>
+        <th>
+          <div class="center-block btn-group">
+            <p data-th-class="'text-center'">
+              <a data-th-class="${paging.sortOrder} == ASC and
+                                ${paging.sortField} == title ? 'dropup' : 'dropdown'"
+                 data-th-href="@{''(pageNumber=${paging.pageNumber},sortField=title,
+                               __(${paging.sortOrder}=='ASC'?'sortOrder=DESC':'sortOrder=ASC')__)}">Назва
+                <span class="caret"></span></a>
+            </p>
+          </div>
+        </th>
+        <th><p class="text-center">Автори</p></th>
+        <th>
+          <div class="center-block btn-group drop">
+            <p class="text-center">
+              <a data-th-class="${paging.sortOrder} == ASC and
+                                ${paging.sortField} == price ? 'dropup' : 'dropdown'"
+                 data-th-href="@{''(pageNumber=${paging.pageNumber},sortField=price,
+                               __(${paging.sortOrder}=='ASC'?'sortOrder=DESC':'sortOrder=ASC')__)}">Ціна
+                <span class="caret"></span></a>
+            </p>
+          </div>
+        </th>
+        <th>
+          <div class="center-block btn-group">
+            <p class="text-center">
+              <a data-th-class="${paging.sortOrder} == ASC and
+                                ${paging.sortField} == count ? 'dropup' : 'dropdown'"
+                 data-th-href="@{''(pageNumber=${paging.pageNumber},sortField=amount,
+                               __(${paging.sortOrder}=='ASC'?'sortOrder=DESC':'sortOrder=ASC')__)}">Кіл-ть
+                <span class="caret"></span></a>
+            </p>
+          </div>
+        </th>
+        <th class="text-center">
+          <span data-th-replace="${role eq 'admin'} ?
+                ~{/fragments/edit_book_button :: editBook('/admin/book/0','btn-success','Додати нову')} : _"></span>
+          <span data-th-if="${role eq 'client'}">В кошик</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-th-each="book : ${books}">
+        <td><p class="text-center" data-th-text="${bookStat.count}">1</p></td>
+        <td><p class="text-left">
+          <a data-th-href="@{'/book/' + ${book.id}(pageNumber=${paging.pageNumber},sortField=amount,
+                               sortOrder=${paging.sortOrder})}"
+             data-th-text="${book.title}">title</a></p>
+        </td>
+        <td><p class="text-left" data-th-each="a : ${book.author}">
+          <span data-th-text="${a.name}"></span><br/>
+        </p></td>
+        <td><p class="text-right" data-th-text="${book.price}">price</p></td>
+        <td><p class="text-right" data-th-text="${book.amount}">amount</p></td>
+
+        <td class="text-center">
+          <div data-th-replace="${role eq 'admin'} ?
+            ~{/fragments/edit_book_button :: editBook('/admin/book/' + ${book.id},'btn-primary','Редагувати')} : _"></div>
+          <div data-th-replace="${role eq 'client'} ?
+            ~{/fragments/add_to_cart_button :: addToCart(${book.id},@{/client/addtocart})} : _"></div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--<script src="$/js/bootstrap.js"></script>-->
+
+</body>
+</html>

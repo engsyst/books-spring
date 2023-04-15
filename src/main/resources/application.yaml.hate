@@ -1,0 +1,57 @@
+# I hate yaml format, but have to use it because
+spring:
+  datasource: # Database connection parameters for mysql database
+    url: 'jdbc:mysql://localhost/books'
+    username: root
+    password: root
+  jpa:
+    hibernate: # Database initialization
+      ddl-auto: none # never, always, embedded
+    generate-ddl: false # JPA
+  sql:
+    init:
+      mode: never # never, always, embedded
+      # platform: mysql # hsqldb, h2, oracle, mysql, postgresql
+      # continue-on-error: true # Continue running schema.sql even if tables already exists
+  devtools:
+    livereload: # DevTools allows to reload application
+      enabled: true
+
+  thymeleaf: # Thymeleaf
+    cache: false
+  application:
+    name: books
+
+debug: true
+
+server:
+  port: '8081'
+  servlet:
+    # context-path: '/books'
+  # context-path:
+app:
+  order:
+    status-list: >-
+      {'newed','inprogress','completed','rejected'}
+    status-flow: >-
+      {newed:{'inprogress','rejected'},inprogress:{'completed','rejected'},completed:'',rejected:''}
+  web:
+    filter:
+      session-filter:
+        static-resources: '/css/,/fonts/,/img/,/js/'
+        admin-resources: '/admin/,/book'
+        client-resources: '/client/,/book'
+    view:
+      order:
+        status-icon: >-
+          {newed:'glyphicon-flash',inprogress:'glyphicon-forward',completed:'glyphicon-saved',rejected:'glyphicon-remove'}
+        statuses: >-
+          {newed:'Новий',inprogress:'В роботі',completed:'Завершений',rejected:'Скасований','':'Усі'}
+        filter: newed
+        sort-field: create_date
+        sort-order: DESC
+        items-per-page: '5'
+      book:
+        sort-field: title
+        sort-order: ASC
+        items-per-page: '5'

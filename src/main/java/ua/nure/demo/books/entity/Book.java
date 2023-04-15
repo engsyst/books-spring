@@ -22,7 +22,7 @@ public class Book implements Serializable {
     private String title;
     private String isbn;
     private BigDecimal price;
-    private int count;
+    private int amount;
     private Long categoryId;
     private String cover;
     private String description;

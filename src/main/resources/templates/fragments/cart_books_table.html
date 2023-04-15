@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="row" data-th-fragment="books(role, books, paging)">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+    <table class="table table-bordered table-trimed">
+      <colgroup class="col-position"></colgroup>
+      <colgroup class="col-title"></colgroup>
+      <colgroup class="col-author"></colgroup>
+      <colgroup class="col-price"></colgroup>
+      <colgroup class="col-action"></colgroup>
+      <thead class="text-center">
+      <tr class="text-center">
+        <th class="text-center">#</th>
+        <th>
+          <div class="center-block btn-group">
+            <p data-th-class="'text-center'">
+              <a data-th-class="${paging.sortOrder} == ASC and
+                                ${paging.sortField} == title ? 'dropup' : 'dropdown'"
+                 data-th-href="@{''(pageNumber=${paging.pageNumber},sortField=title,
+                               __(${paging.sortOrder}=='ASC'?'sortOrder=DESC':'sortOrder=ASC')__)}">Назва
+                <span class="caret"></span></a>
+            </p>
+          </div>
+        </th>
+        <th><p class="text-center">Автори</p></th>
+        <th>
+          <div class="center-block btn-group drop">
+            <p class="text-center">
+              <a data-th-class="${paging.sortOrder} == ASC and
+                                ${paging.sortField} == price ? 'dropup' : 'dropdown'"
+                 data-th-href="@{''(pageNumber=${paging.pageNumber},sortField=price,
+                               __(${paging.sortOrder}=='ASC'?'sortOrder=DESC':'sortOrder=ASC')__)}">Ціна
+                <span class="caret"></span></a>
+            </p>
+          </div>
+        </th>
+        <th class="text-center">В кошику</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr data-th-each="book : ${books}">
+        <td><p class="text-center" data-th-text="${bookStat.count}">1</p></td>
+        <td><p class="text-left">
+          <a data-th-href="@{'/book/' + ${book.key.id}(pageNumber=${paging.pageNumber},sortField=amount,
+                               sortOrder=${paging.sortOrder})}"
+             data-th-text="${book.key.title}">title</a></p>
+        </td>
+        <td><p class="text-left" data-th-each="a : ${book.key.author}">
+          <span data-th-text="${a.name}"></span><br/>
+        </p></td>
+        <td><p class="text-right" data-th-text="${book.key.price}">price</p></td>
+        <!--<td><p class="text-right" data-th-text="${book.amount}">amount</p></td>-->
+
+        <td class="text-center">
+          <div class="input-group">
+            <form data-th-id="'update-' + ${book.key.id }" action="updatecart"
+                  method="post">
+              <input type="number" name="count"
+                     data-th-value="${book.value > book.key.amount ? book.key.amount : book.value}"
+                     class="form-control" min="1" data-th-max="${book.key.amount}">
+            </form>
+            <span class="input-group-btn">
+                        <button type="submit" name="update" data-th-form="'update-' + ${book.key.id}"
+                                title="Оновити кощик"
+                                class="btn btn-success" data-th-value="${book.key.id }">
+                            <i class="glyphicon glyphicon-shopping-cart"></i>
+                        </button>
+                        <button type="submit" name="remove" data-th-form="'update-' + ${book.key.id}"
+                                title="Видалити з кошику"
+                                class="btn btn-warning" data-th-value="${book.key.id }">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </span>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content"></div>
+  </div>
+</div><!-- /.modal -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--<script src="$/js/jquery-1.12.1.js"></script>-->
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!--<script src="$/js/bootstrap.js"></script>-->
+<!--<data-th-block data-th-replace="~{/fragments/bootstrap :: bootstrap}"></data-th-block>-->
+<!--<script data-th-src="$/js/confirm.js"></script>-->
+
+</body>
+</html>

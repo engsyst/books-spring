@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<body>
+<ul data-th-fragment="adminNavbar" class="nav navbar-nav">
+  <li><a data-th-href="@{'/book'(
+         sortField=${@bookViewConfig.sortField},
+         sortOrder=${@bookViewConfig.sortOrder},
+         itemsPerPage=${@bookViewConfig.itemsPerPage})}"
+         data-th-text="Книги">Books</a></li>
+  <li><a data-th-href="@{'/admin/order'(
+         filter=${@orderViewConfig.filter},
+         sortField=${@orderViewConfig.sortField},
+         sortOrder=${@orderViewConfig.sortOrder},
+         itemsPerPage=${@orderViewConfig.itemsPerPage})}"
+         data-th-text="Замовлення">Orders</a></li>
+</ul>
+<ul data-th-fragment="clientNavbar" class="nav navbar-nav">
+  <li><a data-th-href="@{/book(
+         sortField=${@bookViewConfig.sortField},
+         sortOrder=${@bookViewConfig.sortOrder},
+         itemsPerPage=${@bookViewConfig.itemsPerPage})}">Книжки</a></li>
+  <li>
+    <a data-th-href="@{/client/cart}"
+       data-th-with="num = ${session != null} ? (${session.cart != null} ? ${session.cart.size()} : '0') : '0'"
+       data-th-text="|Кошик ( ${num} ) |">Кошик ( 0 )</a></li>
+</ul>
+<ul data-th-fragment="noRoleNavbar" class="nav navbar-nav">
+  <li><a data-th-href="@{/book(role=client,
+         sortField=${@bookViewConfig.sortField},
+         sortOrder=${@bookViewConfig.sortOrder},
+         itemsPerPage=${@bookViewConfig.itemsPerPage})}" data-th-text="Клієнт">Client</a></li>
+  <li><a data-th-href="@{/book(role=admin,
+         sortField=${@bookViewConfig.sortField},
+         sortOrder=${@bookViewConfig.sortOrder},
+         itemsPerPage=${@bookViewConfig.itemsPerPage})}" data-th-text="Оператор">Manager</a></li>
+</ul>
+</body>
+</html>

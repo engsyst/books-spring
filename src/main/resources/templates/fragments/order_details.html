@@ -1,0 +1,114 @@
+<!--<!DOCTYPE html>
+<html lang="uk">
+<body>-->
+<!--TODO-->
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title"
+        data-th-text="${param.action=='confirm' ?
+            'Подтвердите отмену заказа' : 'Детали замовлення'}">
+      Title</h4>
+  </div>
+
+  <div class="modal-body">
+    <div data-th-unless="${error}">
+      <p class="lead"
+         data-th-with="contact = ${order.user == null  or order.user.name.isBlank()} ?
+                      'unregistered' : ${order.user.name}"
+         data-th-text="${contact}">
+        ${empty order.title ? : order.title }</p>
+      <form class="form-horizontal">
+        <div data-th-each="delivery : ${order.deliveries}">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Им'я</label>
+            <div class="col-sm-10">
+              <p class="form-control-static" data-th-text="${delivery.name}">${delivery.name }</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Телефон</label>
+            <div class="col-sm-10">
+              <p class="form-control-static" data-th-text="${delivery.phone}">Phone</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <p class="form-control-static" data-th-text="${delivery.email}">email</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Адреса</label>
+            <div class="col-sm-10">
+              <p class="form-control-static" data-th-text="${delivery.address}">address</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Нотатки</label>
+            <div class="col-sm-10">
+              <p class="form-control-static" data-th-text="${delivery.description}">description</p>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- </div>
+      <div class="row col-md-12"> -->
+      <table class="table table-bordered table-striped">
+        <colgroup class="col-position"></colgroup>
+        <colgroup class="col-title"></colgroup>
+        <colgroup class="col-count"></colgroup>
+        <colgroup class="col-price"></colgroup>
+        <thead class="text-center">
+        <tr>
+          <th>#</th>
+          <th>Назва</th>
+          <th>Кіл-ть</th>
+          <th>Ціна</th>
+        </tr>
+        </thead>
+        <tbody data-th-each="orderBook : ${order.orderBooks}">
+        <tr>
+          <td data-th-text="${orderBookStat.count}"></td>
+          <td data-th-text="${orderBook.book.title}">${book.title}</td>
+          <td><p class="text-center"
+                 data-th-text="${orderBook.count}">${book.count}</p></td>
+          <td><p class="text-right"
+                 data-th-text="${orderBook.price}">${book.price}</p></td>
+        </tr>
+        </tbody>
+      </table>
+      <p class="lead text-right" data-th-text="'Усього: ' + ${order.price}">Total: ${order.price }</p>
+    </div>
+    <div class="modal-footer" data-th-with="p = ${param.action}">
+      <div data-th-if="${#strings.equals(param.action, 'confirm')}">
+        <form id="confirm"
+              data-th-action="@{'/admin/order/' + ${order.id} + '/status'}"
+              method="post">
+          <span class="lead">Встановити статус:</span>
+          <button type="submit" form="confirm"
+                  data-th-with="next = ${param.status}"
+                  name="status"
+                  data-th-value="${status}"
+                  data-th-class="'btn ' + ${application.statusStyles.get(status)}"
+                  data-th-text="${application.statusLabels.get(status)}">Підтвердити
+          </button>
+          <button class="btn btn-warning" type="button"
+                  data-dismiss="modal">&times;
+          </button>
+        </form>
+      </div>
+      <div data-th-unless="${#strings.equals(param.action, 'confirm')}">
+        <button class="btn btn-warning" type="button" data-dismiss="modal">&times;</button>
+      </div>
+    </div>
+    <div data-th-if="${error}">
+      <h4>Замовлення не знайдено</h4>
+      <p data-th-class="lead" data-th-text="${error}">${model.error }</p>
+      <div>
+        <button class="btn btn-warning" type="button"
+                data-dismiss="modal">&times;</button>
+      </div>
+    </div>
+  </div>
+</div>

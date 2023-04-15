@@ -636,7 +636,7 @@ var i,
 	push_native = arr.push,
 	push = arr.push,
 	slice = arr.slice,
-	// Use a stripped-down indexOf as it's faster than native
+	// Use a trimped-down indexOf as it's faster than native
 	// http://jsperf.com/thor-indexof-vs-for/5
 	indexOf = function( list, elem ) {
 		var i = 0,
@@ -1648,7 +1648,7 @@ Expr = Sizzle.selectors = {
 			if ( match[3] ) {
 				match[2] = match[4] || match[5] || "";
 
-			// Strip excess characters from unquoted arguments
+			// trim excess characters from unquoted arguments
 			} else if ( unquoted && rpseudo.test( unquoted ) &&
 				// Get excess from tokenize (recursively)
 				(excess = tokenize( unquoted, true )) &&
@@ -4464,7 +4464,7 @@ function createSafeFragment( document ) {
 	// Setup
 	div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
 
-	// IE strips leading whitespace when .innerHTML is used
+	// IE trims leading whitespace when .innerHTML is used
 	support.leadingWhitespace = div.firstChild.nodeType === 3;
 
 	// Make sure that tbody elements aren't automatically inserted

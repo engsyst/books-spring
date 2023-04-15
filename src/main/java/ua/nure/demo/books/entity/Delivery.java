@@ -1,8 +1,6 @@
 package ua.nure.demo.books.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,6 +9,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor @AllArgsConstructor
 public class Delivery implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

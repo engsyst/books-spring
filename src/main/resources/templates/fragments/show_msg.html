@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- error message -->
+<div class="container">
+  <div class="row"
+       data-th-fragment="closableMsg(class, message)"> <!-- alert-danger, alert-success-->
+    <div data-th-class="'alert ' + ${class}">
+      <!-- Кнопка для закриття повідомлення, створена за допомогою елементу a -->
+      <a href="#" class="close" data-dismiss="alert">×</a>
+      [[${message}]]
+      <!--<span data-th-text="${error}">error</span>-->
+    </div>
+  </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
+     data-th-fragment="titleMsg(message)">
+  <h1 data-th-text="${message}">Корзина пуста</h1>
+</div>
+</div>
+</body>
+</html>

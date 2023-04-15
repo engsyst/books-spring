@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
-<span data-th-fragment="editBook(bookId)">
-    <a data-th-href="@{/admin/books/get(id=${bookId})}"
-       class="btn btn-primary"
+<span data-th-fragment="editBook(url,style,title)">
+    <a data-th-href="@{${url}}"
+       data-th-class="'btn ' + ${style}"
        data-toggle="modal"
-       data-target="#myModal"
-       title="Редагувати">
+       data-target="#dataModal"
+       data-the-title="${title}">
     <i class="glyphicon glyphicon-edit"></i>
 </a>
 </span>

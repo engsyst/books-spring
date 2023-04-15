@@ -1,27 +1,31 @@
 package ua.nure.demo.books.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import ua.nure.demo.books.web.common.Priceable;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
 @ToString
-public class Order implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Order implements Priceable, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private Integer no;
-    private Long userId;
-    private Date date;
+    private User user;
+    private Date createDate;
+    private Date updateDate;
     private String status;
-    private Long deliveryId;
+    private Set<Delivery> deliveries;
+    private Set<OrderBook> orderBooks;
 
     @Override
     public boolean equals(Object o) {
@@ -34,5 +38,11 @@ public class Order implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public BigDecimal getPrice() {
+        return orderBooks.stream().map(OrderBook::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

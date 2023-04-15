@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head data-th-replace="~{fragments/headers :: head(title='Books')}">
-    <title>Books</title>
+  <title>Books</title>
 </head>
 <body>
-<div data-th-replace="~{/fragments/menu::menu('client')}"></div>
+<div data-th-replace="~{/fragments/menu::menu(${session.role})}"></div>
 
 <!-- CONTENT -->
 <div class="section main-content">
-    <div class="container">
+  <div class="container">
 
-        <div class="row">
-            <!--<h3 data-th-text="Замовлення ${empty search ? '' : 'по запросу '.concat(odp.search).concat('\') }">Orders</h3>-->
-            <h3 data-th-text="Книги">Books</h3><!-- -->
-        </div>
-        <div data-th-replace="~{fragments/bookstable :: books('client')}"></div>
-        <div data-th-replace="~{fragments/pagination :: pagination(${paging})}"></div>
+    <div class="row">
+      <!--<h3 data-th-text="Замовлення ${empty search ? '' : 'по запросу '.concat(odp.search).concat('\') }">Orders</h3>-->
+      <h3 data-th-text="Книги">Books</h3><!-- -->
     </div>
+    <div data-th-replace="~{fragments/books_table :: books(${session.role},${books},${session.bookPaging})}"></div>
+    <div data-th-replace="~{fragments/pagination :: pagination(${session.bookPaging})}"></div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div><!-- /.modal -->
 </div>
 
-<!--<%@ include file="../jspf/bootstrap.jspf" %>-->
-<data-th-block data-th-replace="~{/fragments/bootstrap :: bootstrap}"></data-th-block>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script data-th-src="@{/js/jquery-1.12.1.js}"></script>
+<script data-th-src="@{/js/bootstrap.js}"></script>
 <script data-th-src="@{/js/confirm.js}"></script>
 </body>
 </html>

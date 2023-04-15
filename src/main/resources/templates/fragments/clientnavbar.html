@@ -1,4 +1,7 @@
 <ul data-th-fragment="navbar" class="nav navbar-nav">
-    <li><a data-th-href="@{/book}">Книги</a></li>
-    <li><a data-th-href="@{/client/cart}">Корзина (${fn:length(sessionScope.cart)})</a></li>
+  <li><a data-th-href="@{/book}">Книжки</a></li>
+  <li><!--<span data-th-text="${session == null}"></span><span data-th-text="${session.cart == null}"></span>-->
+    <a data-th-href="@{/client/cart}"
+       data-th-with="num = ${session != null} ? (${session.cart != null} ? ${session.cart.size()} : '0') : '0'"
+       data-th-text="|Кошик ( ${num} ) |">Кошик ( 0 )</a></li><!--'Корзина \ ' + -->
 </ul>

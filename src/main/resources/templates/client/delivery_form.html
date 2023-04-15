@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head data-th-replace="~{fragments/headers :: head(title='Кошик')}">
+  <title>Delivery</title>
+</head>
+<body>
+<div data-th-replace="~{/fragments/menu::menu('client')}"></div>
+
+<!-- CONTENT -->
+<div class="section main-content">
+  <!--<div class="container">
+    <div class="row"
+         data-th-replace="${error} ? ~{fragments/show_msg :: closableMsg('alert-danger', ${error})} : _"></div>
+    <div class="row"
+         data-th-replace="${info} ? ~{fragments/show_msg :: closableMsg('alert-success', ${info})} : _"></div>
+  </div>-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-3">
+          <!--<span data-th-text="'Delivery: ' + ${deliveryForm}">D</span>
+          <div data-th-errors="${deliveryForm}">...</div>-->
+        </div>
+        <div class="col-md-6">
+          <form class="form-horizontal" method="post" data-th-object="${deliveryForm}">
+            <!--<span data-th-text="${#fields.hasAnyErrors()}">D</span>
+            <ul data-th-if="${#fields.hasErrors('*')}" class="errorlist">
+              <li data-th-each="err : ${#fields.errors('*')}" data-th-text="${err}">Input is incorrect</li>
+            </ul>
+              <p data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}">...</p>
+            <div data-th-if="${#fields.hasAnyErrors()}">
+            </div>-->
+            <fieldset>
+              <!-- Form Name -->
+              <legend>Доставка</legend>
+
+              <!-- Text input-->
+              <div class="form-group required">
+                <label class="col-md-4 control-label" data-th-for="${'name'}">Ім'я</label>
+                <div class="col-md-8">
+                  <input type="text" placeholder="Им'я..."
+                         class="form-control input-md"
+                         maxlength="45"
+                         data-th-errorclass="has-error"
+                         data-th-field="*{name}"/>
+                  <span class="help-block">Як до Вас звертатися?</span>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group required">
+                <label class="col-md-4 control-label" data-th-for="${'phone'}">Телефон</label>
+                <div class="col-md-8">
+                  <input type="tel" placeholder="38 0XX XXX XX XX"
+                         class="form-control input-md"
+                         data-th-errorclass="has-error"
+                         data-th-field="*{phone}">
+                  <span class="help-block">Формат вводу: 38 0XX XXX XX XX.<br/>Ми не зможемо з Вами
+                    зв'язатися якщо номер некоректний.</span>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="form-group required">
+                <label class="col-md-4 control-label" data-th-for="${'email'}">E-mail</label>
+                <div class="col-md-8">
+                  <input type="email" placeholder="e-mail..."
+                         class="form-control input-md"
+                         maxlength="45"
+                         data-th-errorclass="has-error"
+                         data-th-field="*{email}">
+                  <span class="help-block">Додатковий спосіб зв'язку</span>
+                </div>
+              </div>
+
+              <!-- Textarea -->
+              <div class="form-group required">
+                <label class="col-md-4 control-label" data-th-for="${'address'}">Адреса доставки</label>
+                <div class="col-md-8">
+                  <textarea placeholder="Ваша адреса..."
+                            class="form-control"
+                            maxlength="1000"
+                            data-th-errorclass="has-error"
+                            data-th-field="*{address}">Address</textarea>
+                  <span class="help-block">Введіть адресу доставки</span>
+                </div>
+              </div>
+
+              <!-- Textarea -->
+              <div class="form-group">
+                <label class="col-md-4 control-label" data-th-for="${'description'}">Примітки</label>
+                <div class="col-md-8">
+                  <textarea placeholder="Ваш адрес..."
+                            class="form-control"
+                            maxlength="1000"
+                            data-th-field="*{description}">Додаткові примітки</textarea>
+                  <span class="help-block">Введіть додаткові примітки якщо бажаєте</span>
+                </div>
+              </div>
+
+            </fieldset>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <!-- Button (Double) -->
+              <div class="form-group text-right">
+                <label class="col-md-4 control-label" for="confirm"></label>
+                <div class="col-md-12">
+                  <button class="btn btn-success"
+                          id="confirm"
+                          name="makeorder"
+                          formaction="makeorder">Оформити замовлення
+                  </button>
+                  <button class="btn btn-success"
+                          id="continue"
+                          name="continue"
+                          formaction="savedelivery">Запам'ятати контакти
+                  </button>
+                  <a class="btn btn-danger" data-th-href="@{/client/cart}">Скасувати</a>
+                  <!--<button class="btn btn-danger" formmethod="get"
+                          id="cancel"
+                          formaction="/client/cart">Скасувати</button>-->
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

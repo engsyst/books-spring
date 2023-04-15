@@ -107,3 +107,8 @@
 	width: 200px;
 	text-align: center;
 }
+
+textarea.has-error,input.has-error {
+    border-color: #a94442;
+    box-shadow:0 1px 0 #a94442;
+}

@@ -3,6 +3,8 @@ $("#confirm").submit(function(e)
 {
     var postData = $(this).serializeArray();
     var formURL = $(this).attr("action");
+    console.log("post data: ", postData)
+    console.log("formURL: ", formURL)
     $.ajax(
     {
         url : formURL,
@@ -14,17 +16,19 @@ $("#confirm").submit(function(e)
         },
         error: function(jqXHR, textStatus, errorThrown) 
         {
-            window.alert(textStatus)
+        console.log("error: ", errorThrown)
+            window.alert(`${errorThrown}`)
         }
     });
     e.preventDefault(); //STOP default action
-    e.unbind(); //unbind. to stop multiple form submit.
+    // e.unbind(); //unbind. to stop multiple form submit.
 });
  
-/*$("#confirm").submit(); //Submit  the FORM
+/*
+$("#confirm").submit(); //Submit  the FORM
 */
 //Fill modal with content from link href
-$("#myModal").on("show.bs.modal", function(e) {
+$("#dataModal").on("show.bs.modal", function(e) {
     var link = $(e.relatedTarget);
     $(this).find(".modal-content").load(link.attr("href"));
 });
